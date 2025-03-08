@@ -13,7 +13,7 @@ class ExactSolver:
         self.num_microservices = len(self.microservice_graph.nodes)
         self.num_edge_servers = len(self.edge_network.nodes)
 
-    def solve(self):
+    def solve(self, verbose=True):
         model = ConcreteModel()
         model.microservices = RangeSet(1, self.num_microservices)  # 1-based indexing
         model.edge_servers = RangeSet(1, self.num_edge_servers)  # 1-based indexing
@@ -143,7 +143,7 @@ class ExactSolver:
         
         # Solve the model usnig Gurobi solver
         solver = SolverFactory('gurobi')
-        result = solver.solve(model, tee=True)
+        result = solver.solve(model, tee=verbose)
 
         if result.solver.status == SolverStatus.ok and result.solver.termination_condition == TerminationCondition.optimal:
             print("Optimization successful!", value(model.objective))

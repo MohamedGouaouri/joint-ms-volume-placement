@@ -1,14 +1,10 @@
 
 import numpy as np
 import networkx as nx
-import cvxpy as cp
-import matplotlib.pyplot as plt
-from pyomo.environ import *
-from collections import deque
 from copy import deepcopy
 from .utils import find_k_hop_neighbors
 
-# Algorithm based on node ranks
+# Algorithm based on node ranks and centrality
 class GraphCentralityRankBasedHeuristic:
 
     def __init__(self, sim):
@@ -97,7 +93,7 @@ class GraphCentralityRankBasedHeuristic:
         self.rank_cache[ms] = rank
 
         return rank
-    def solve(self):
+    def solve(self, verbose=False):
         ms_placement = np.zeros((self.num_microservices, self.num_edge_servers))
         data_placement = np.zeros((self.num_microservices, self.num_edge_servers))
 

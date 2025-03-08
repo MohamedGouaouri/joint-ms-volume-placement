@@ -109,4 +109,4 @@ class EdgeNetworkOptimization:
             if verbose:
                 print(f"MS placement cost: {L_ms}, Energy cost {L_energy} , Data placement cost: {L_vol}, Penalty: {penalty}")
 
-            return L_ms + L_energy + L_vol + penalty
+            return L_ms + L_energy + L_vol + penalty, L_ms, L_energy, L_vol, penalty

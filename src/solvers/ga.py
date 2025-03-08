@@ -30,7 +30,7 @@ class GASolver:
         y = self.allocate_data(x)
 
         # compute cost
-        cost = self.compute_cost(x, y)
+        cost, *_ = self.compute_cost(x, y)
 
         return cost
 
@@ -76,7 +76,7 @@ class GASolver:
             chromosome[m] = np.random.randint(self.num_edge_servers)
         return chromosome
 
-    def solve(self):
+    def solve(self, verbose=False):
         population = self.initialize_population()
         best_solution = None
         best_fitness = float('inf')

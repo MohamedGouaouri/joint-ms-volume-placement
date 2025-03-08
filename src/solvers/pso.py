@@ -47,7 +47,7 @@ class PSOSolver:
             x[m, n] = 1
 
         y = self.allocate_data(x)
-        cost = self.compute_cost(x, y)
+        cost, *_ = self.compute_cost(x, y)
         return cost
 
     def allocate_data(self, x):
@@ -83,7 +83,7 @@ class PSOSolver:
         """
         return self.sim.compute_placement_cost(x, y)
 
-    def solve(self):
+    def solve(self, verbose=False):
         """
         Run the PSO algorithm.
         """
